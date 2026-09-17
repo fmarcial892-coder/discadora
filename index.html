@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Central profissional de discagem e atendimento">
+<title>Discadora — Central de Atendimento</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">⌁</div><div><strong>Discadora</strong><span>Central de atendimento</span></div></div>
+    <nav class="nav" aria-label="Navegação principal">
+      <button class="nav-item active" data-view="dashboard"><span>◈</span> Visão geral</button>
+      <button class="nav-item" data-view="contatos"><span>♙</span> Contatos</button>
+      <button class="nav-item" data-view="campanha"><span>◌</span> Campanha</button>
+      <button class="nav-item" data-view="config"><span>⚙</span> Configurações</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="security"><span>●</span><div><b>Operação segura</b><small>Credenciais ficam no servidor</small></div></div>
+      <p>Use somente contatos que possam ser contatados legitimamente e respeite pedidos de não receber novas ligações.</p>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><div class="eyebrow">CENTRAL DE ATENDIMENTO</div><h1 id="pageTitle">Visão geral</h1></div>
+      <div class="top-actions"><div class="connection"><i></i><span id="provider">Verificando telefonia...</span></div><button class="avatar">D</button></div>
+    </header>
+
+    <section id="dashboard" class="view active">
+      <div class="welcome"><div><div class="eyebrow">PAINEL DE CONTROLE</div><h2>Pronto para começar?</h2><p>Importe sua lista, revise o roteiro e inicie os contatos um por um.</p></div><button class="primary" id="goContacts">＋ Importar contatos</button></div>
+      <div class="stats">
+        <article><span>Contatos</span><strong id="total">0</strong><small>Total na lista</small></article>
+        <article><span>Ligações iniciadas</span><strong id="calls">0</strong><small>Histórico da sessão</small></article>
+        <article><span>Interessados</span><strong id="interested">0</strong><small>Marcados no painel</small></article>
+        <article><span>Não ligar</span><strong id="optout">0</strong><small>Bloqueados</small></article>
+      </div>
+      <div class="dashboard-grid">
+        <article class="card call-card">
+          <div class="card-title"><div><div class="eyebrow">PRÓXIMO CONTATO</div><h2 id="name">Nenhum contato</h2><p id="phone">Importe uma lista CSV para começar.</p></div><span class="status-pill" id="badge">Aguardando</span></div>
+          <div class="contact-preview"><div class="avatar-big" id="avatar">—</div><div><strong id="company">Sua lista de contatos</strong><p id="notes">Nome, telefone e empresa são reconhecidos automaticamente.</p></div></div>
+          <div class="script-box"><div class="eyebrow">ROTEIRO DA LIGAÇÃO</div><p id="scriptPreview"></p></div>
+          <div class="call-actions"><button id="call" class="primary call-button">☎ <span>Iniciar ligação</span></button><button id="wa" class="whatsapp">◉ <span>WhatsApp</span></button><button id="skip" class="secondary">Pular</button></div>
+          <div class="result-row"><span>Resultado:</span><button data-result="interested">✓ Interessado</button><button data-result="callback">↻ Retornar</button><button data-result="noanswer">— Não atendeu</button><button data-result="optout">⊘ Não ligar</button></div>
+        </article>
+        <article class="card side-card"><div class="card-heading"><div><div class="eyebrow">ATIVIDADE</div><h3>Últimos resultados</h3></div><button id="clear" class="ghost">Limpar</button></div><div id="recent" class="recent"></div></article>
+      </div>
+    </section>
+
+    <section id="contatos" class="view">
+      <div class="section-head"><div><div class="eyebrow">BASE DE CONTATOS</div><h2>Contatos</h2><p>Importe um CSV e organize sua fila de atendimento.</p></div><label class="primary upload">＋ Importar CSV<input id="csv" type="file" accept=".csv,text/csv"></label></div>
+      <article class="card"><div class="toolbar"><input id="search" placeholder="Buscar por nome, telefone ou empresa..." autocomplete="off"><span id="count">0 contatos</span></div><div class="table-wrap"><table><thead><tr><th>Nome</th><th>Telefone</th><th>Empresa</th><th>Status</th><th></th></tr></thead><tbody id="tbody"></tbody></table></div></article>
+      <div class="tip"><b>Formato CSV:</b> use colunas como <code>nome</code>, <code>telefone</code>, <code>empresa</code> e <code>observacoes</code>. O sistema também reconhece nomes equivalentes em inglês.</div>
+    </section>
+
+    <section id="campanha" class="view">
+      <div class="section-head"><div><div class="eyebrow">CONFIGURAÇÃO DE ATENDIMENTO</div><h2>Campanha</h2><p>Defina o roteiro e o comportamento da fila.</p></div></div>
+      <div class="two-col">
+        <article class="card"><div class="eyebrow">ROTEIRO DE VOZ</div><h3>Mensagem da ligação</h3><textarea id="script" rows="7">Olá, aqui é da sua empresa. Estamos entrando em contato para apresentar uma oferta de crédito. Se tiver interesse em saber mais, pressione 1. Para não receber novas ligações, pressione 2.</textarea><p class="hint">Use somente informações verdadeiras e verificadas. Não informe limite de crédito que não tenha sido confirmado para o cliente.</p><button id="save" class="primary">Salvar roteiro</button></article>
+        <article class="card"><div class="eyebrow">AUTOMAÇÃO</div><h3>Preferências da fila</h3><label class="switch-row"><span><b>Avançar automaticamente</b><small>Ir para o próximo contato após registrar um resultado.</small></span><input id="auto" type="checkbox" checked><i></i></label><label class="switch-row"><span><b>Bloquear pedido de não ligar</b><small>Retirar contatos com opt-out da fila.</small></span><input id="block" type="checkbox" checked><i></i></label><label class="switch-row"><span><b>Mostrar WhatsApp para interessados</b><small>Exibir o atalho de WhatsApp no atendimento.</small></span><input id="showwa" type="checkbox" checked><i></i></label></article>
+      </div>
+    </section>
+
+    <section id="config" class="view">
+      <div class="section-head"><div><div class="eyebrow">INTEGRAÇÕES</div><h2>Configurações</h2><p>Conecte a telefonia sem expor suas chaves no navegador.</p></div></div>
+      <div class="two-col">
+        <article class="card"><div class="integration-icon">☎</div><h3>Telefonia</h3><p>O projeto está preparado para <b>Twilio Programmable Voice</b>. As credenciais devem ser cadastradas como variáveis de ambiente no servidor.</p><div class="env"><code>TWILIO_ACCOUNT_SID</code><code>TWILIO_AUTH_TOKEN</code><code>TWILIO_FROM_NUMBER</code><code>PUBLIC_BASE_URL</code></div><div class="notice">Nunca coloque tokens ou senhas no HTML, JavaScript do navegador ou repositório público.</div></article>
+        <article class="card"><div class="integration-icon">◉</div><h3>WhatsApp</h3><p>O botão do painel abre uma conversa com o contato e já prepara uma mensagem. Para envio automático após a tecla 1, é necessária uma integração oficial do WhatsApp Business.</p><div class="notice">O painel não finge ser outra empresa nem confirma crédito que não tenha sido previamente verificado.</div></article>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="app.js"></script>
+</body></html>
