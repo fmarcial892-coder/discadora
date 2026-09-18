@@ -4,6 +4,7 @@ let history=JSON.parse(localStorage.getItem('discadora_history')||'[]');
 let idx=Number(localStorage.getItem('discadora_idx')||0);
 let calls=Number(localStorage.getItem('discadora_calls')||0);
 let script=localStorage.getItem('discadora_script')||$('#script').value;
+contacts.forEach(c=>{if(c.status==='calling')c.status='';});
 const pageNames={dashboard:'Visão geral',contatos:'Contatos',campanha:'Campanha',config:'Configurações'};
 function save(){localStorage.setItem('discadora_contacts',JSON.stringify(contacts));localStorage.setItem('discadora_history',JSON.stringify(history));localStorage.setItem('discadora_idx',String(idx));localStorage.setItem('discadora_calls',String(calls));localStorage.setItem('discadora_script',script)}
 function normPhone(v){let d=String(v||'').replace(/\D/g,'');if(d.startsWith('55'))return '+'+d;if(d.length===10||d.length===11)return '+55'+d;return ''}
