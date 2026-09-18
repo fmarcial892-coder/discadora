@@ -29,7 +29,7 @@
     </header>
 
     <section id="dashboard" class="view active">
-      <div class="welcome"><div><div class="eyebrow">PAINEL DE CONTROLE</div><h2>Pronto para começar?</h2><p>Importe sua lista, revise o roteiro e inicie os contatos um por um.</p></div><button class="primary" id="goContacts">＋ Importar contatos</button></div>
+      <div class="welcome"><div><div class="eyebrow">PAINEL DE CONTROLE</div><h2>Pronto para começar?</h2><p>Adicione os números, revise o roteiro e inicie os contatos um por um.</p></div><button class="primary" id="goContacts">＋ Adicionar contatos</button></div>
       <div class="stats">
         <article><span>Contatos</span><strong id="total">0</strong><small>Total na lista</small></article>
         <article><span>Ligações iniciadas</span><strong id="calls">0</strong><small>Histórico da sessão</small></article>
@@ -38,8 +38,8 @@
       </div>
       <div class="dashboard-grid">
         <article class="card call-card">
-          <div class="card-title"><div><div class="eyebrow">PRÓXIMO CONTATO</div><h2 id="name">Nenhum contato</h2><p id="phone">Importe uma lista CSV para começar.</p></div><span class="status-pill" id="badge">Aguardando</span></div>
-          <div class="contact-preview"><div class="avatar-big" id="avatar">—</div><div><strong id="company">Sua lista de contatos</strong><p id="notes">Nome, telefone e empresa são reconhecidos automaticamente.</p></div></div>
+          <div class="card-title"><div><div class="eyebrow">PRÓXIMO CONTATO</div><h2 id="name">Nenhum contato</h2><p id="phone">Adicione um número para começar.</p></div><span class="status-pill" id="badge">Aguardando</span></div>
+          <div class="contact-preview"><div class="avatar-big" id="avatar">—</div><div><strong id="company">Sua lista de contatos</strong><p id="notes">Os números podem ser digitados individualmente ou colados em lista.</p></div></div>
           <div class="script-box"><div class="eyebrow">ROTEIRO DA LIGAÇÃO</div><p id="scriptPreview"></p></div>
           <div class="call-actions"><button id="call" class="primary call-button">☎ <span>Iniciar ligação</span></button><button id="wa" class="whatsapp">◉ <span>WhatsApp</span></button><button id="skip" class="secondary">Pular</button></div>
           <div class="result-row"><span>Resultado:</span><button data-result="interested">✓ Interessado</button><button data-result="callback">↻ Retornar</button><button data-result="noanswer">— Não atendeu</button><button data-result="optout">⊘ Não ligar</button></div>
@@ -49,9 +49,10 @@
     </section>
 
     <section id="contatos" class="view">
-      <div class="section-head"><div><div class="eyebrow">BASE DE CONTATOS</div><h2>Contatos</h2><p>Importe um CSV e organize sua fila de atendimento.</p></div><label class="primary upload">＋ Importar CSV<input id="csv" type="file" accept=".csv,text/csv"></label></div>
-      <article class="card"><div class="toolbar"><input id="search" placeholder="Buscar por nome, telefone ou empresa..." autocomplete="off"><span id="count">0 contatos</span></div><div class="table-wrap"><table><thead><tr><th>Nome</th><th>Telefone</th><th>Empresa</th><th>Status</th><th></th></tr></thead><tbody id="tbody"></tbody></table></div></article>
-      <div class="tip"><b>Formato CSV:</b> use colunas como <code>nome</code>, <code>telefone</code>, <code>empresa</code> e <code>observacoes</code>. O sistema também reconhece nomes equivalentes em inglês.</div>
+      <div class="section-head"><div><div class="eyebrow">BASE DE CONTATOS</div><h2>Contatos</h2><p>Digite um número com DDD ou cole uma lista de até 10.000 números.</p></div></div>
+      <article class="card"><div class="manual-contact"><div class="eyebrow">ADICIONAR NÚMERO</div><h3>Digite o telefone com DDD</h3><div class="manual-row"><input id="singlePhone" inputmode="numeric" placeholder="Ex.: 11999998888" autocomplete="off"><button id="addSingle" class="primary">＋ Adicionar número</button></div><p class="hint">Aceita 10 ou 11 dígitos. O sistema normaliza automaticamente para +55.</p></div><div class="list-contact"><div class="eyebrow">LISTA DE NÚMEROS</div><h3>Cole sua lista</h3><textarea id="phoneList" rows="8" placeholder="Cole um número por linha"></textarea><div class="list-actions"><span id="listCount">0 números detectados · limite 10.000</span><button id="addList" class="primary">＋ Adicionar lista</button></div><p class="hint">Pode colar até 10.000 números. O sistema ignora espaços, pontuação e linhas vazias e remove duplicados.</p></div></article>
+      <article class="card"><div class="toolbar"><input id="search" placeholder="Buscar por telefone..." autocomplete="off"><span id="count">0 contatos</span></div><div class="table-wrap"><table><thead><tr><th>Nome</th><th>Telefone</th><th>Status</th><th></th></tr></thead><tbody id="tbody"></tbody></table></div></article>
+      <div class="tip"><b>Importante:</b> use somente números que possam ser contatados legitimamente e respeite pedidos de não receber novas ligações.</div>
     </section>
 
     <section id="campanha" class="view">
